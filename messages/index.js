@@ -259,7 +259,7 @@ intents.matches('BookClass', [
                       console.log(session.classInformation);
                       session.classTime = body[0].classTime;
                       console.log(session.classTime);
-                      displayClasses(session);
+                      //displayClasses(session);
                       builder.Prompts.text(session,'Can I confirm that you want to book a '+ classInfo.title + " class for " + classInfo.day + "?");
                             
                       }
