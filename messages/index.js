@@ -150,13 +150,13 @@ var displayMyClasses = function(session){
     info = session.bookedClassesInfo = [];
     //bookingInfo[i].classTime = bookingInfo[i].classTime.replace('.0000000', '');
     var class_img;
-    if(classInformation[i].ClassName == "Yoga") {
+    if(bookingInfo[i].ClassName == "Yoga") {
       class_img = "yoga.jpg";
     }
-    else if(classInformation[i].ClassName == "Pilates") {
+    else if(bookingInfo[i].ClassName == "Pilates") {
       class_img = "zumba.jpg";
     }
-    else if(classInformation[i].ClassName == "Zumba") {
+    else if(bookingInfo[i].ClassName == "Zumba") {
       class_img = "pilates.jpg";
     }
     info.push({class_name: bookingInfo[i].class_name, class_date: bookingInfo[i].class_date, class_img: class_img});
