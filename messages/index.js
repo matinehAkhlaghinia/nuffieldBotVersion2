@@ -384,8 +384,8 @@ intents.matches('CancelClass', [
               url: 'http://nuffieldhealth.azurewebsites.net/cancelBooking',
               method: 'POST',
               json: {
-                  class_name: "'"+classInfo.date+"'",
-                  class_date: "'"+classInfo.title+"'",
+                  class_name: "'"+classInfo.title+"'",
+                  class_date: "'"+classInfo.date+"'",
                   user_session: user_session
               }
           }, function(error, response, body){
