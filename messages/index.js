@@ -468,7 +468,7 @@ intents.matches('ActiveBookings', [
             console.log(error);
         } else {
             console.log(response.statusCode, body);
-            if(body.length == 0)
+            if("undefined" === typeof body)
                 session.send("You don't have any active bookings!");
             else{
                 session.classInformation = body;
