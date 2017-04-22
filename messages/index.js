@@ -470,10 +470,10 @@ intents.matches('ActiveBookings', [
             console.log(response.statusCode, body);
             if(body.length == 0)
                 session.send("You don't have any active bookings!");
-              else{
+            else{
                 session.classInformation = body;
                 displayMyClasses(session);
-              }
+            }
             
             session.endDialogWithResult({ response: session.bookingInfo });
     }
