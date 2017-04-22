@@ -8,41 +8,12 @@ var builder = require("botbuilder");
 var botbuilder_azure = require("botbuilder-azure");
 var request = require('request');
 var restify = require('restify');
-//var cloudinary = require('cloudinary');
-var server = restify.createServer();
-var token;
+
 var callback = function(token){
   token = token;
   console.log(token);
 }
 
-// server.post('/api/messages', function(req, res){
-//   console.log('here');
-//   callback(req.params['token']);
-//   if(token) {
-//     session.send("SUCCESS");
-//   }
-//   res.send(200);
-// });
-
-
-// cloudinary.config({
-//   cloud_name: 'dhl2r3xhs',
-//   api_key: '423592355274385',
-//   api_secret: 'TF6QnKD_MUALdQiTZLSRFvlfGWs'
-// });
-
-// cloudinary.uploader.upload("yoga.jpg", function(result) {
-//   console.log(result)
-// });
-
-// cloudinary.uploader.upload("zumba.jpg", function(result) {
-//   console.log(result)
-// });
-
-// cloudinary.uploader.upload("pilates.jpg", function(result) {
-//   console.log(result)
-// });
 
 var useEmulator = (process.env.NODE_ENV == 'development');
 //useEmulator = true;
@@ -221,20 +192,6 @@ intents.matches('BookClass', [
    function (session, args, next) {
      user_session = session.message.sourceEvent.clientActivityId;
      user_session = user_session.slice(0, user_session.length-2);
-     request({
-         url: 'http://nuffieldhealth.azurewebsites.net/addSession',
-         method: 'POST',
-         json: {
-             user_session: "'"+user_session+"'"
-         }
-     }, function(error, response, body){
-         if(error) {
-             console.log(error);
-         } else {
-             console.log(response.statusCode, body);
-             console.log("THE BODY" + body);
-     }
-     });
 
         var className = builder.EntityRecognizer.findEntity(args.entities, 'ClassName');
         var classTime = builder.EntityRecognizer.resolveTime(args.entities);
@@ -561,6 +518,7 @@ function createHeroCardVersion3(session) {
 }
 
 if (useEmulator) {
+    var server = restify.createServer();
     server.listen(3978, function() {
         console.log('test bot endpont at http://localhost:3978/api/messages');
     });
