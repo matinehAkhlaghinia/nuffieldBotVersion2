@@ -439,8 +439,13 @@ intents.matches('ViewClass', [
               console.log(error);
           } else {
               console.log(response.statusCode, body);
-              session.classInformation = body;
-              displayClassesAvailable(session);
+              if(body.length == 0)
+                session.send("You don't have any active bookings!");
+              else{
+                session.classInformation = body;
+                displayClassesAvailable(session);
+              }
+              
       }
       });
     }
