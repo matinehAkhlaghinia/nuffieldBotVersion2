@@ -45,7 +45,7 @@ var callback = function(token){
 // });
 
 var useEmulator = (process.env.NODE_ENV == 'development');
-//useEmulator = true;
+useEmulator = true;
 
 var connector = useEmulator ? new builder.ChatConnector() : new botbuilder_azure.BotServiceConnector({
     appId: process.env['MicrosoftAppId'],
@@ -461,17 +461,18 @@ intents.matches('ActiveBookings', [
         method: 'POST',
         //Lets post the following key/values as form
         json: {
-            userID: user_session
+            userID: user_session ? user_session : null
         }
     }, function(error, response, body){
         if(error) {
             console.log(error);
         } else {
             console.log(response.statusCode, body);
-            if("undefined" === typeof body)
+            console.log("the length"+body.length);
+            if("undefined" === typeof body || body.length == 0)
                 session.send("You don't have any active bookings!");
             else{
-                session.classInformation = body;
+                session.bookingInfo = body;
                 displayMyClasses(session);
             }
             
