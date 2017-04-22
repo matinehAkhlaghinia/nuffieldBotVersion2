@@ -8,7 +8,7 @@ var builder = require("botbuilder");
 var botbuilder_azure = require("botbuilder-azure");
 var request = require('request');
 var restify = require('restify');
-var cloudinary = require('cloudinary');
+//var cloudinary = require('cloudinary');
 var server = restify.createServer();
 var token;
 var callback = function(token){
@@ -26,23 +26,23 @@ var callback = function(token){
 // });
 
 
-cloudinary.config({
-  cloud_name: 'dhl2r3xhs',
-  api_key: '423592355274385',
-  api_secret: 'TF6QnKD_MUALdQiTZLSRFvlfGWs'
-});
+// cloudinary.config({
+//   cloud_name: 'dhl2r3xhs',
+//   api_key: '423592355274385',
+//   api_secret: 'TF6QnKD_MUALdQiTZLSRFvlfGWs'
+// });
 
-cloudinary.uploader.upload("yoga.jpg", function(result) {
-  console.log(result)
-});
+// cloudinary.uploader.upload("yoga.jpg", function(result) {
+//   console.log(result)
+// });
 
-cloudinary.uploader.upload("zumba.jpg", function(result) {
-  console.log(result)
-});
+// cloudinary.uploader.upload("zumba.jpg", function(result) {
+//   console.log(result)
+// });
 
-cloudinary.uploader.upload("pilates.jpg", function(result) {
-  console.log(result)
-});
+// cloudinary.uploader.upload("pilates.jpg", function(result) {
+//   console.log(result)
+// });
 
 var useEmulator = (process.env.NODE_ENV == 'development');
 //useEmulator = true;
@@ -91,13 +91,13 @@ var displayClasses = function(session){
     classInformation[i].classTime = classInformation[i].classTime.replace('.0000000', '');
     var class_img;
     if(classInformation[i].ClassName == "Yoga") {
-      class_img = "http://res.cloudinary.com/dhl2r3xhs/image/upload/v1490331763/j08c1mcdacjquhsr3lib.jpg";
+      class_img = "yoga.jpg";
     }
     else if(classInformation[i].ClassName == "Pilates") {
-      class_img = "http://res.cloudinary.com/dhl2r3xhs/image/upload/v1490331764/jfwyeon6sicjmznmiqme.jpg";
+      class_img = "zumba.jpg";
     }
     else if(classInformation[i].ClassName == "Zumba") {
-      class_img = "http://res.cloudinary.com/dhl2r3xhs/image/upload/v1490331764/f7usah8cpqoobxar6brg.jpg";
+      class_img = "pilates.jpg";
     }
     info.push({Class_Name: classInformation[i].ClassName, Class_Time: classInformation[i].classTime, Duration: classInformation[i].Duration, Class_Days: classInformation[i].classDays, class_img: class_img});
     console.log(info.length);
@@ -120,13 +120,13 @@ var displayClassesAvailable = function(session){
     classInformation[i].classTime = classInformation[i].classTime.replace('.0000000', '');
     var class_img;
     if(classInformation[i].ClassName == "Yoga") {
-      class_img = "http://res.cloudinary.com/dhl2r3xhs/image/upload/v1490331763/j08c1mcdacjquhsr3lib.jpg";
+      class_img = "yoga.jpg";
     }
     else if(classInformation[i].ClassName == "Pilates") {
-      class_img = "http://res.cloudinary.com/dhl2r3xhs/image/upload/v1490331764/jfwyeon6sicjmznmiqme.jpg";
+      class_img = "zumba.jpg";
     }
     else if(classInformation[i].ClassName == "Zumba") {
-      class_img = "http://res.cloudinary.com/dhl2r3xhs/image/upload/v1490331764/f7usah8cpqoobxar6brg.jpg";
+      class_img = "pilates.jpg";
     }
     info.push({Class_Name: classInformation[i].ClassName, Class_Time: classInformation[i].classTime, Duration: classInformation[i].Duration, Class_Days: classInformation[i].classDays, class_img: class_img});
     console.log(info.length);
@@ -150,14 +150,14 @@ var displayMyClasses = function(session){
     info = session.bookedClassesInfo = [];
     //bookingInfo[i].classTime = bookingInfo[i].classTime.replace('.0000000', '');
     var class_img;
-    if(bookingInfo[i].class_name == "Yoga") {
-      class_img = "http://res.cloudinary.com/dhl2r3xhs/image/upload/v1490331763/j08c1mcdacjquhsr3lib.jpg";
+    if(classInformation[i].ClassName == "Yoga") {
+      class_img = "yoga.jpg";
     }
-    else if(bookingInfo[i].class_name == "Pilates") {
-      class_img = "http://res.cloudinary.com/dhl2r3xhs/image/upload/v1490331764/jfwyeon6sicjmznmiqme.jpg";
+    else if(classInformation[i].ClassName == "Pilates") {
+      class_img = "zumba.jpg";
     }
-    else if(bookingInfo[i].class_name == "Zumba") {
-      class_img = "http://res.cloudinary.com/dhl2r3xhs/image/upload/v1490331764/f7usah8cpqoobxar6brg.jpg";
+    else if(classInformation[i].ClassName == "Zumba") {
+      class_img = "pilates.jpg";
     }
     info.push({class_name: bookingInfo[i].class_name, class_date: bookingInfo[i].class_date, class_img: class_img});
     cards.push(createHeroCardVersion3(session));
