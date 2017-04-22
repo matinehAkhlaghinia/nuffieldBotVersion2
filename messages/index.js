@@ -439,13 +439,8 @@ intents.matches('ViewClass', [
               console.log(error);
           } else {
               console.log(response.statusCode, body);
-              if(body.length == 0)
-                session.send("You don't have any active bookings!");
-              else{
-                session.classInformation = body;
-                displayClassesAvailable(session);
-              }
-              
+              session.classInformation = body;
+              displayClassesAvailable(session);
       }
       });
     }
@@ -473,8 +468,13 @@ intents.matches('ActiveBookings', [
             console.log(error);
         } else {
             console.log(response.statusCode, body);
-            session.bookingInfo = body;
-            displayMyClasses(session);
+            if(body.length == 0)
+                session.send("You don't have any active bookings!");
+              else{
+                session.classInformation = body;
+                displayMyClasses(session);
+              }
+            
             session.endDialogWithResult({ response: session.bookingInfo });
     }
   })
