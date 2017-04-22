@@ -269,7 +269,7 @@ intents.matches('BookClass', [
     },
     function(session, results) {
       var classInfo = session.dialogData.classInformation;
-      if(results.response == "yes" || results.response == "Yes" || results.response == "Sure" || results.response == "sure") {
+      if(results.response.substring(0,3) == "yes" || results.response.substring(0,3) == "Yes" || results.response.substring(0,4) == "Sure" || results.response.substring(0,4) == "sure") {
         request({
             url: 'http://nuffieldhealth.azurewebsites.net/book_class',
             method: 'POST',
