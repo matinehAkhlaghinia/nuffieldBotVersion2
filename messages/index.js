@@ -19,8 +19,8 @@ var useEmulator = (process.env.NODE_ENV == 'development');
 //useEmulator = true;
 
 var connector = useEmulator ? new builder.ChatConnector() : new botbuilder_azure.BotServiceConnector({
-    appId: process.env['MicrosoftAppId'],
-    appPassword: process.env['MicrosoftAppPassword'],
+    appId: 'e96f48f3-bf1e-4fa5-891b-eb8600dcea67',
+    appPassword: 'HSf3LkDnUz8OC4kk9A7gthG',
     stateEndpoint: process.env['BotStateEndpoint'],
     openIdMetadata: process.env['BotOpenIdMetadata']
 });
